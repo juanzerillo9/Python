@@ -1,3 +1,11 @@
+"""
+
+PRACTICE WITH WEB SCRAPING USING BS4!
+
+
+"""
+
+
 import requests
 from bs4 import BeautifulSoup
 

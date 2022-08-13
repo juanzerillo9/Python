@@ -1,3 +1,13 @@
+""" 
+
+Welcome to my file to remember SQL with Python!
+I use this file to read some codes when I forget something!
+
+I hope you find it interesting or you can even use it sometime!
+
+
+"""
+
 import mysql.connector
 
 #Conexion a base de datos

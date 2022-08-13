@@ -1,3 +1,14 @@
+"""
+
+This is a practice using BS4 & REQUEST!
+
+Here is a PRACTICE extracting data FROM GOOGLE with a REQUEST (HTML SESSION)
+
+This is for learning purposes only and is not for profit.
+
+"""
+
+
 from tracemalloc import stop
 from bs4 import BeautifulSoup
 from requests_html import HTMLSession

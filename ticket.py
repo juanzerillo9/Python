@@ -67,7 +67,6 @@ def pedido(cart):
 
 def cart():
     cursor.execute("SELECT * FROM cart")
-    # SACAR DATOS, tambien puede utilizarse fectchone para sacar el primer dato
     result = cursor.fetchall()
     print("-----YOUR CART-----")
     for prd in result:
@@ -90,17 +89,51 @@ def order():
 
     if opt == '1':
         return order_product()
-    if opt == '2':
-        return True
+    try:
+        if opt == '2':
+            return print_order()
+    except:
+        print("There are no items")
     if opt == '3':
+        cursor.execute("""
+        CREATE TABLE IF NOT EXISTS cart(
+        product varchar(40) not null,
+        price float(10, 2) not null,
+        quant int(5) not null
+        )
+        """)
         return cart()
     if opt == '4':
+        cursor.execute("DROP TABLE cart")
+        print(cursor.rowcount, "Borrados!!")
         main()
     else:
         print("Error")\
 
     return main()
 
+
+def print_order():
+    cursor.execute("SELECT * FROM cart")
+    result = cursor.fetchall()
+    print("YOUR TICKET".center(40,"*"))
+    print()
+    total = 0
+
+    for prd in result:
+        print(f'{prd[0]}'.ljust(30,"."), end="")
+        print(f'{(prd[1]*float(prd[2]))}'.rjust(10, "."))
+        print() 
+        total += float(prd[1]*prd[2])
+
+    #print(f'{prd[0]} ........ {int(prd[1])*prd[2]}'.center())
+    print('-'*40)
+    print()
+    print('TOTAL'.ljust(30,"."), end="")
+    print(str(total).rjust(10, "."))
+    print()
+    print('*'*40)
+    return order()
 
 def main():
     print("""
